@@ -13,6 +13,16 @@ class BuildingsController < ApplicationController
     end
   end
 
+  def update
+    building = Building.find(params[:id])
+
+    building.update(building_params)
+
+    render json: {
+      building: building
+    }
+  end
+
   private
 
   def building_params

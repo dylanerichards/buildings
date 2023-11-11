@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   post "/buildings", to: "buildings#create"
+  patch "/buildings/:id", to: "buildings#update"
 end
