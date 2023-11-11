@@ -3,9 +3,7 @@ class BuildingsController < ApplicationController
     building = Building.new(building_params)
 
     if building.save
-      render json: {
-        building: building
-      }
+      render json: building
     else
       render json: {
         errors: building.errors.messages
@@ -18,9 +16,7 @@ class BuildingsController < ApplicationController
 
     building.update(building_params)
 
-    render json: {
-      building: building
-    }
+    render json: building
   end
 
   private

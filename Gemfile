@@ -78,3 +78,5 @@ gem "devise", "~> 4.9"
 
 gem "rspec", "~> 3.12"
 gem "rspec-rails", "~> 6.0"
+
+gem "active_model_serializers", "~> 0.10.14"

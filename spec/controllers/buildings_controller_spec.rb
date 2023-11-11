@@ -24,6 +24,14 @@ RSpec.describe BuildingsController, type: :controller do
       expect(Building.count).to eq 1
       expect(Building.first.address).to eq "1085 Broadway"
       expect(Building.first.client).to eq client
+
+      expect(JSON.parse(response.body).symbolize_keys).to eq({
+          id: Building.first.id,
+          address: "1085 Broadway",
+          city: "Brooklyn",
+          zip: "11221",
+          client: client.name
+      })
     end
   end
 
@@ -58,6 +66,14 @@ RSpec.describe BuildingsController, type: :controller do
 
       expect(Building.first.city).to eq "New York"
       expect(Building.first.client).to eq client
+
+      expect(JSON.parse(response.body).symbolize_keys).to eq({
+          id: Building.first.id,
+          address: "0 Bond",
+          city: "New York",
+          zip: "10003",
+          client: client.name
+      })
     end
   end
 end
