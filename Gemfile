@@ -75,3 +75,6 @@ group :test do
 end
 
 gem "devise", "~> 4.9"
+
+gem "rspec", "~> 3.12"
+gem "rspec-rails", "~> 6.0"
