@@ -1,6 +1,16 @@
 class BuildingsController < ApplicationController
   def create
-    Building.create(building_params)
+    building = Building.new(building_params)
+
+    if building.save
+      render json: {
+        building: building
+      }
+    else
+      render json: {
+        errors: building.errors.messages
+      }
+    end
   end
 
   private

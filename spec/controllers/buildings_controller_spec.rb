@@ -11,7 +11,6 @@ RSpec.describe BuildingsController, type: :controller do
       ) 
     end
 
-
     it "creates a building" do
       post :create, params: {
         building: {
@@ -25,6 +24,5 @@ RSpec.describe BuildingsController, type: :controller do
       expect(Building.count).to eq(1)
       expect(Building.first.address).to eq "1085 Broadway"
     end
-
   end
 end
