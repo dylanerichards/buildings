@@ -76,4 +76,49 @@ RSpec.describe BuildingsController, type: :controller do
       })
     end
   end
+
+  describe "#index" do
+    before do
+      Building.create(
+        address: "1085 Broadway",
+        city: "Brooklyn",
+        zip: "11221",
+        client_id: client.id
+      ) 
+
+      Building.create(
+        address: "1090 Broadway",
+        city: "Brooklyn",
+        zip: "11221",
+        client_id: client.id
+      ) 
+
+      Building.create(
+        address: "1100 Broadway",
+        city: "Brooklyn",
+        zip: "11221",
+        client_id: client.id
+      ) 
+    end
+
+    let(:client) do
+      Client.create(
+        name: "dylan",
+        email: "dylan@dylan.com",
+        password: "password", 
+        password_confirmation: "password"
+      ) 
+    end
+
+    it "returns all the buildings" do
+      get :index
+
+      expect(response.body).to eq(
+        ActiveModel::SerializableResource.new(
+        Building.all,
+        each_serializer: BuildingSerializer
+).to_json
+      )
+    end
+  end
 end

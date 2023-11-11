@@ -1,4 +1,8 @@
 class BuildingsController < ApplicationController
+  def index
+    render json: Building.all, each_serializer: BuildingSerializer
+  end
+
   def create
     building = Building.new(building_params)
 
