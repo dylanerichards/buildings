@@ -9,7 +9,11 @@ class BuildingsController < ApplicationController
     if building.save
       building.custom_fields.create(custom_field_params["custom_fields"])
 
-      render json: building
+      render json: {
+        message: "success",
+        building: ::BuildingSerializer.new(building)
+      }
+
     else
       render json: {
         errors: building.errors.messages
@@ -22,7 +26,10 @@ class BuildingsController < ApplicationController
 
     building.update(building_params)
 
-    render json: building
+      render json: {
+        message: "success",
+        building: ::BuildingSerializer.new(building)
+      }
   end
 
   private

@@ -3,6 +3,7 @@ class CustomField < ApplicationRecord
 
   validate :number_field
   validate :enum_field
+  validate :field_name
 
   def number_field
     if field_type == "number"
