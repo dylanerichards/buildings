@@ -9,8 +9,10 @@ class BuildingsController < ApplicationController
     building = Building.new(building_params)
 
     if building.save
-      building.custom_fields.create(custom_field_params["custom_fields"])
-
+      custom_field_params["custom_fields"].each do |param|
+        building.custom_fields.create(param)
+      end
+      
       render json: {
         message: "success",
         building: ::BuildingSerializer.new(building)
@@ -42,7 +44,7 @@ class BuildingsController < ApplicationController
 
   def custom_field_params
     params.permit(
-      custom_fields: [:field_name, :field_type, :value]
+      custom_fields: [:field_name, :field_type, :value, :enum_options]
     )
   end
 end

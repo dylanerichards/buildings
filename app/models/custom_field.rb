@@ -19,9 +19,10 @@ class CustomField < ApplicationRecord
         errors.add(:base, "Comma-separated enum_options must be present for 'enum' type")
       end
 
-      valid_values = enum_options.split(",")
+      valid_values = enum_options.split(",").map(&:strip)
 
       if valid_values.exclude?(value)
+      binding.pry
         errors.add(:base, "Value must be one of '#{valid_values}")
       end
     end
