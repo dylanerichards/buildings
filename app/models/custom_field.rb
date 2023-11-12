@@ -22,7 +22,6 @@ class CustomField < ApplicationRecord
       valid_values = enum_options.split(",").map(&:strip)
 
       if valid_values.exclude?(value)
-      binding.pry
         errors.add(:base, "Value must be one of '#{valid_values}")
       end
     end

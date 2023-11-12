@@ -21,7 +21,8 @@ RSpec.describe BuildingsController, type: :controller do
         },
         custom_fields: [
           { field_name: "bathrooms", value: "1.5", field_type: "number"},
-          { field_name: "pets", value: "yes", field_type: "freeform"}
+          { field_name: "pets", value: "yes", field_type: "freeform"},
+          { field_name: "floorplan", value: "open", field_type: "enum", enum_options: "closed, open, loft" }
         ]
       }
 
@@ -36,7 +37,7 @@ RSpec.describe BuildingsController, type: :controller do
           "city" => "Brooklyn",
           "zip" => "11221",
           "client" => client.name,
-          "custom_fields" => [{ "bathrooms" => "1.5"}, {"pets" => "yes"}],
+          "custom_fields" => [{ "bathrooms" => "1.5"}, {"pets" => "yes"}, "floorplan" => "open"],
         },
           "message" => "success"
       })
@@ -127,7 +128,7 @@ RSpec.describe BuildingsController, type: :controller do
 
       expect(response.body).to eq(
         ActiveModel::SerializableResource.new(
-        Building.all,
+        Building.first(2),
         each_serializer: BuildingSerializer
 ).to_json
       )

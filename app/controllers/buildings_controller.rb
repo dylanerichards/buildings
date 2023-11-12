@@ -10,7 +10,7 @@ class BuildingsController < ApplicationController
 
     if building.save
       custom_field_params["custom_fields"].each do |param|
-        building.custom_fields.create(param)
+        building.custom_fields.create!(param)
       end
       
       render json: {
