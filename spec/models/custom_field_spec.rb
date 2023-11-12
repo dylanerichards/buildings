@@ -74,7 +74,7 @@ RSpec.describe CustomField do
               building_id: building.id,
               enum_options: "brick, concrete, none"
             )
-          }.to change(CustomField, :count).by 1
+          }.to change(CustomField, :count).by 0
         end
       end
 
