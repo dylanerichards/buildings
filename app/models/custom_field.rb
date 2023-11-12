@@ -15,6 +15,10 @@ class CustomField < ApplicationRecord
 
   def enum_field
     if field_type == "enum"
+      if enum_options.empty?
+        errors.add(:base, "Comma-separated enum_options must be present for 'enum' type")
+      end
+
       valid_values = enum_options.split(",")
 
       if valid_values.exclude?(value)
