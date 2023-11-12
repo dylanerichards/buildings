@@ -32,6 +32,30 @@ RSpec.describe CustomField do
         end
       end
 
+      context "when field type is number" do
+        it "only allows values that can be coerced to decimals" do
+          expect {
+            CustomField.create(
+              field_name: "bathrooms",
+              value: "1.5",
+              field_type: "number",
+              building_id: building.id
+            )
+          }.to change(CustomField, :count).by 1
+
+          expect {
+            CustomField.create(
+              field_name: "bathrooms",
+              value: "one point five",
+              field_type: "number",
+              building_id: building.id
+            )
+          }.to change(CustomField, :count).by 0
+        end
+      end
+
+
+
 
 
     end
