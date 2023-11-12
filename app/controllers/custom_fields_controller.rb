@@ -5,14 +5,9 @@ class CustomFieldsController < ApplicationController
       field_name: params[:field_name],
     )
 
-    custom_field.assign_attributes(
-      field_name: params[:field_name],
-      field_type: params[:field_type],
-      enum_options: params[:enum_options],
+    custom_field.update!(
       value: params[:value]
     )
-
-    custom_field.save!
 
     render json: custom_field
   end

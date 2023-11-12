@@ -60,7 +60,7 @@ RSpec.describe BuildingsController, type: :controller do
         city: "Brooklyn",
         zip: "11221",
         client_id: client.id
-      ) 
+      )
     end
 
     it "updates an existing building" do
