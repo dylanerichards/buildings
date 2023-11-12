@@ -17,8 +17,12 @@ RSpec.describe BuildingsController, type: :controller do
           address: "1085 Broadway",
           city: "Brooklyn",
           zip: "11221",
-          client_id: client.id
-        }
+          client_id: client.id,
+        },
+        custom_fields: [
+          { field_name: "bathrooms", value: "1.5", field_type: "number"},
+          { field_name: "pets", value: "yes", field_type: "freeform"}
+        ]
       }
 
       expect(Building.count).to eq 1
@@ -30,7 +34,8 @@ RSpec.describe BuildingsController, type: :controller do
           address: "1085 Broadway",
           city: "Brooklyn",
           zip: "11221",
-          client: client.name
+          client: client.name,
+          custom_fields: [{ "bathrooms" => "1.5"}, {"pets" => "yes"}]
       })
     end
   end
@@ -72,7 +77,8 @@ RSpec.describe BuildingsController, type: :controller do
           address: "0 Bond",
           city: "New York",
           zip: "10003",
-          client: client.name
+          client: client.name,
+          custom_fields: []
       })
     end
   end

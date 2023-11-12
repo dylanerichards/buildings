@@ -7,6 +7,8 @@ class BuildingsController < ApplicationController
     building = Building.new(building_params)
 
     if building.save
+      building.custom_fields.create(custom_field_params["custom_fields"])
+
       render json: building
     else
       render json: {
@@ -27,5 +29,11 @@ class BuildingsController < ApplicationController
 
   def building_params
     params.require(:building).permit(:name, :address, :city, :zip, :client_id)
+  end
+
+  def custom_field_params
+    params.permit(
+      custom_fields: [:field_name, :field_type, :value]
+    )
   end
 end
