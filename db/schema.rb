@@ -43,6 +43,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_11_193524) do
     t.string "field_name"
     t.string "value"
     t.string "field_type"
+    t.string "enum_options"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["building_id"], name: "index_custom_fields_on_building_id"

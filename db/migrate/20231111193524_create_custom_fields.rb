@@ -5,6 +5,7 @@ class CreateCustomFields < ActiveRecord::Migration[7.0]
       t.string :field_name
       t.string :value
       t.string :field_type
+      t.string :enum_options
 
       t.timestamps
     end

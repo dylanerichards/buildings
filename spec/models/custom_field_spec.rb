@@ -54,6 +54,30 @@ RSpec.describe CustomField do
         end
       end
 
+      context "when field type is enum" do
+        it "only allows values to be saved that are in the enum_options" do
+          expect {
+            CustomField.create(
+              field_name: "walkway type",
+              value: "brick",
+              field_type: "enum",
+              building_id: building.id,
+              enum_options: "brick, concrete, none"
+            )
+          }.to change(CustomField, :count).by 1
+
+          expect{
+            CustomField.create(
+              field_name: "walkway type",
+              value: "plaster",
+              field_type: "enum",
+              building_id: building.id,
+              enum_options: "brick, concrete, none"
+            )
+          }.to change(CustomField, :count).by 1
+        end
+      end
+
 
 
 
