@@ -1,6 +1,8 @@
 class BuildingsController < ApplicationController
   def index
-    render json: Building.all, each_serializer: BuildingSerializer
+    @pagy, @records = pagy(Building.all)
+
+    render json: @records, each_serializer: BuildingSerializer
   end
 
   def create
