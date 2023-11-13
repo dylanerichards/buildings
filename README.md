@@ -11,7 +11,7 @@ A platform that stores a list of physical buildings.
 - Set up the database: `bundle exec rake db:create db:migrate`
 - Seed the database: `bundle exec rake db:seed`
     -   The seeds create 5 Clients. 2 Buildings per client, and 2 CustomFields per Building.
-- Start the server: `bin/dev` or `rails server`
+- Start the server: `bin/dev` or `rails server`. The app starts at `localhost:3000`
 
 
 ## Usage
