@@ -1,33 +1,35 @@
-require "rails_helper"
+# frozen_string_literal: true
+
+require 'rails_helper'
 
 RSpec.describe CustomFieldsController, type: :controller do
-  describe "#update" do
+  describe '#update' do
     let(:client) do
       Client.create(
-        name: "dylan",
-        email: "dylan@dylan.com",
-        password: "password", 
-        password_confirmation: "password"
-      ) 
+        name: 'dylan',
+        email: 'dylan@dylan.com',
+        password: 'password',
+        password_confirmation: 'password'
+      )
     end
 
     let(:building) do
       Building.create(
-        address: "1085 Broadway",
-        city: "Brooklyn",
-        zip: "11221",
+        address: '1085 Broadway',
+        city: 'Brooklyn',
+        zip: '11221',
         client_id: client.id
-      ) 
+      )
     end
 
-    let(:custom_field) {
+    let(:custom_field) do
       CustomField.create(
         building_id: building.id,
-        field_name: "pets",
-        value: "allowed",
-        field_type: "freeform"
+        field_name: 'pets',
+        value: 'allowed',
+        field_type: 'freeform'
       )
-    }
+    end
 
     before do
       client
@@ -35,15 +37,14 @@ RSpec.describe CustomFieldsController, type: :controller do
       custom_field
     end
 
-    it "can be updated" do
+    it 'can be updated' do
       patch :update, params: {
-        "building_id": building.id,
-        "field_name": "pets",
-        "value": "not allowed",
+        building_id: building.id,
+        field_name: 'pets',
+        value: 'not allowed'
       }
 
-      expect(building.custom_fields.last.value).to eq "not allowed"
+      expect(building.custom_fields.last.value).to eq 'not allowed'
     end
-
   end
 end
