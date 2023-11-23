@@ -90,3 +90,11 @@ Can update the value and type of an existing CustomField. The building's ID and 
     "enum_options": "open, closed, semi"
 }
 ```
+
+## Running the Tests
+
+I've written a few tests to verify that each endpoint accepts the correct parameters and returns the correct responses.
+
+There are also some tests for the validations on `CustomField` 
+
+Run the specs with `rspec spec`
