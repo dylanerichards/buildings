@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CustomField < ApplicationRecord
   belongs_to :building
 
@@ -6,24 +8,21 @@ class CustomField < ApplicationRecord
   validate :field_name
 
   def number_field
-    if field_type == "number"
-      if !Float(value, exception: false)
-        errors.add(:base, "Value must be a decimal when for field type 'number")
-      end
-    end
+    return unless field_type == 'number'
+    return if Float(value, exception: false)
+
+    errors.add(:base, "Value must be a decimal when for field type 'number")
   end
 
   def enum_field
-    if field_type == "enum"
-      if enum_options.empty?
-        errors.add(:base, "Comma-separated enum_options must be present for 'enum' type")
-      end
+    return unless field_type == 'enum'
 
-      valid_values = enum_options.split(",").map(&:strip)
+    errors.add(:base, "Comma-separated enum_options must be present for 'enum' type") if enum_options.empty?
 
-      if valid_values.exclude?(value)
-        errors.add(:base, "Value must be one of '#{valid_values}")
-      end
-    end
+    valid_values = enum_options.split(',').map(&:strip)
+
+    return unless valid_values.exclude?(value)
+
+    errors.add(:base, "Value must be one of '#{valid_values}")
   end
 end

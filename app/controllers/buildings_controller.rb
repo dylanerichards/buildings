@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BuildingsController < ApplicationController
   def index
     @pagy, @records = pagy(Building.all)
@@ -9,12 +11,12 @@ class BuildingsController < ApplicationController
     building = Building.new(building_params)
 
     if building.save
-      custom_field_params["custom_fields"].each do |param|
+      custom_field_params['custom_fields'].each do |param|
         building.custom_fields.create!(param)
       end
-      
+
       render json: {
-        message: "success",
+        message: 'success',
         building: ::BuildingSerializer.new(building)
       }
 
@@ -30,10 +32,10 @@ class BuildingsController < ApplicationController
 
     building.update(building_params)
 
-      render json: {
-        message: "success",
-        building: ::BuildingSerializer.new(building)
-      }
+    render json: {
+      message: 'success',
+      building: ::BuildingSerializer.new(building)
+    }
   end
 
   private
@@ -44,7 +46,7 @@ class BuildingsController < ApplicationController
 
   def custom_field_params
     params.permit(
-      custom_fields: [:field_name, :field_type, :value, :enum_options]
+      custom_fields: %i[field_name field_type value enum_options]
     )
   end
 end
