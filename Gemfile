@@ -84,3 +84,5 @@ gem "rspec-rails", "~> 6.0"
 gem "active_model_serializers", "~> 0.10.14"
 
 gem "pagy", "~> 6.2"
+
+gem "rubocop", "~> 1.57"
